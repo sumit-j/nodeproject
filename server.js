@@ -9,7 +9,7 @@ app.get('/sayHello',(req,res)=>{
     res.status(200)
     res.send('Hello !!')
 })
-const db=require('./index')
+const db=require('./sequelize-bootstrap')
 console.log(db.Person)
 db.sequelize.sync({force:true}).then(function () {
     console.log('db created.')
@@ -19,12 +19,12 @@ app.post('/showData',(req,res)=>{
     db.Employe.bulkCreate(req.body).then((data)=>{
         let  resData=[];
         db.Employe.findAll().then(data=>{
-            data.forEach(element => {
-                resData.push(element.dataValues)
-            });
+            // data.forEach(element => {
+            //     resData.push(element.dataValues)
+            // });
             res.status(200)
-            res.setHeader('Content-Type','application/json')
-            res.send(resData)
+            // res.setHeader('Content-Type','application/json')
+            res.send(`Total number of data persisted in database is : ${data.length}`)
         })
     })
 })
