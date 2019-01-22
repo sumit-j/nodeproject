@@ -10,12 +10,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class HeroService {
   private heroesUrl = 'api/heroes';
-  constructor( private http: HttpClient,
-    private messageService: MessageService) {
-      this.http.get('https://jsonplaceholder.typicode.com').subscribe(data => {
-      console.log(data);
-    });
-     }
+  constructor( private http: HttpClient,private messageService: MessageService) {
+    
+  }
  
    /** GET heroes from the server */
    getHeroes (): Observable<Hero[]> {
